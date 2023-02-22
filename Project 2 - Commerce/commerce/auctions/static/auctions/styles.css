@@ -1,0 +1,131 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 500;
+}
+
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+    padding: 10px;
+}
+
+.nav-left {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    column-gap: 2em;
+}
+
+.nav-left img {
+    height: 5vh;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    column-gap: 2em;
+}
+
+.nav-right img {
+    height: 2.5vh;
+}
+
+nav a {
+    text-decoration: none;
+    color: #000;
+}
+
+.search-bar {
+    width: 10vw;
+    border-radius: 50px;
+    height: 2vh;
+    background-color: #EEEEEE;
+
+}
+
+
+
+main {
+    width: 75vw;
+    margin: 10vh auto;
+}
+
+.listings {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    column-gap: 4vw;
+    row-gap: 5vh;
+}
+
+.listings article {
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+    padding: 25px;
+    border-radius: 10px;
+    transition: 0.5s;
+}
+
+.listings article:hover {
+    transform: scale(1.025);
+    transform: translateY(-5px);
+    transition: 0.3s;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.image-container {
+    width: 100%;
+    height: 250px;
+    background-color: #F2F2F250;
+    margin-bottom: 1.5em;
+}
+
+
+.listings article img {
+    width: 100%;
+    height: 100%;
+    object-fit: scale-down;
+}
+
+.active-listings {
+    margin-bottom: 10vh;
+}
+
+.listing-title {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+
+.listing-description {
+    font-size: 14px;
+    color: #bdbdbd;
+    margin-bottom: 1em;
+}
+
+.listing-category {
+    margin-bottom: 1em;
+}
+
+.listing-price {
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.listing-view {
+    display: inline-block;
+    text-decoration: none;
+    color: black;
+    border: 1px solid black;
+    padding: .5em 1em;
+    border-radius: 5px;
+    font-size: 14px;
+    margin-top: 1em;
+}

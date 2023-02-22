@@ -1,0 +1,54 @@
+{% extends 'auctions/layout.html' %}
+
+{% block body %}
+    {% if winner == user %}
+        <h1>You Won!</h1>
+    {% endif %}
+    <h3 class="listing-title">{{ listing.title }}</h3>
+    <img src="{{ listing.image }}">
+    <p>{{ listing.category }}</p>
+    <p>{{ listing.description }}</p>
+    <p>{{ listing.seller }}</p>
+    {% if current_bid %}
+        <h4>Current bid ${{ current_bid.price }}</h4>
+    {% else %}
+        <h3>No bids yet</h3>
+    {% endif %}
+    <h4>Starter price: ${{ listing.starter_price }}</h4>
+    
+    <p>{{ listing.date_listed }}</p>
+    <h1>{{ test }}</h1>
+
+    {% if user == listing.seller and listing.active %}
+        <form action="{% url 'close_listing' listing_id=listing.id %}" method="POST">
+            {% csrf_token %}
+            <input type="submit" value="Close">
+        </form>
+    {% endif %}
+
+
+
+    {% if user.is_authenticated and listing.active %}
+        <form action="{% url 'place_bid' listing_id=listing.id %}" method = 'POST'>
+            {% csrf_token %}
+            {{ bid_form }}
+            <input type="submit" value="Submit">
+        </form>
+    {% endif %}
+
+    <h2>Comments</h2>
+    {% if user.is_authenticated and listing.active %}
+        <form action="{% url 'leave_comment' listing_id=listing.id %}" method="POST">
+            {% csrf_token %}
+            {{ comment_form }}
+            <input type="submit" value="Submit">
+        </form>
+    {% endif %}
+    {% for comment in comments %}
+        <hr>
+        <h4>{{ comment.author }}</h4>
+        <p>{{ comment.comment }}</p>
+        <p>{{ comment.date_posted }}</p>
+        <hr>
+    {% endfor %}  
+{% endblock %}

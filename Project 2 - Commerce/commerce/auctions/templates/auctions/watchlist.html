@@ -1,0 +1,7 @@
+{% extends 'auctions/layout.html' %}
+
+{% block body %}
+    {% for entry in watchlist %}
+        <p>{{ entry.id }} - {{ entry.listing }}</p>
+    {% endfor %}
+{% endblock %}
