@@ -1,21 +1,47 @@
 {% extends 'auctions/layout.html' %}
+{% load static %}
 
 {% block body %}
     {% if winner == user %}
         <h1>You Won!</h1>
     {% endif %}
-    <h3 class="listing-title">{{ listing.title }}</h3>
-    <img src="{{ listing.image }}">
-    <p>{{ listing.category }}</p>
-    <p>{{ listing.description }}</p>
-    <p>{{ listing.seller }}</p>
-    {% if current_bid %}
-        <h4>Current bid ${{ current_bid.price }}</h4>
-    {% else %}
-        <h3>No bids yet</h3>
-    {% endif %}
-    <h4>Starter price: ${{ listing.starter_price }}</h4>
     
+    
+    <section class="listing-page-product-container">
+        <section class="listing-page-product-image-container">
+            <img src="{{ listing.image }}">
+        </section>
+        <section class="listing-info">
+            <h1>{{ listing.title }}</h1>
+            <p class="listing-page-product-description">{{ listing.description }}</p>
+            <div class="listing-page-price">         
+                {% if current_bid %}
+                    <p class="listing-page-current-bid">Current bid: &dollar;{{ current_bid.price }}</p>
+                    <p class="listing-page-original-price">Original price: &dollar;{{ listing.starter_price }}</p>
+                {% else %}
+                    <p class="listing-page-current-bid">Price: &dollar;{{ listing.starter_price }}</p>
+                    <p class="listing-page-original-price">No bids yet</p>
+                {% endif %}
+            </div>
+            <p class="listing-page-seller">Seller: {{ listing.seller }} </p>
+            <div class="listing-page-product-buttons">
+                {% if user.is_authenticated and listing.active %}
+                    <form action="{% url 'place_bid' listing_id=listing.id %}" method='POST' class="bid-form">
+                    {% csrf_token %}
+                    {{ bid_form }}
+                        <input type="submit" value="Place Bid">
+                    </form>
+                    <form action="{% url 'watchlist_add' listing_id=listing.id %}" method="POST" class="watchlist-add">
+                        {% csrf_token %}
+                        <input type="submit" value="Watchlist">                        
+                    </form>
+                {% endif %}
+            </div>
+        </section>
+        
+    </section>
+    
+    <!--
     <p>{{ listing.date_listed }}</p>
     <h1>{{ test }}</h1>
 
@@ -28,13 +54,7 @@
 
 
 
-    {% if user.is_authenticated and listing.active %}
-        <form action="{% url 'place_bid' listing_id=listing.id %}" method = 'POST'>
-            {% csrf_token %}
-            {{ bid_form }}
-            <input type="submit" value="Submit">
-        </form>
-    {% endif %}
+    
 
     <h2>Comments</h2>
     {% if user.is_authenticated and listing.active %}
@@ -52,3 +72,4 @@
         <hr>
     {% endfor %}  
 {% endblock %}
+-->

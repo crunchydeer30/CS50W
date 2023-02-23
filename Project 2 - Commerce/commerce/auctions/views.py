@@ -28,7 +28,7 @@ class NewComment(forms.Form):
 
 class NewListing(forms.Form):
     title = forms.CharField(max_length=25, label='Title')
-    description = forms.CharField(max_length=150, label='desctiption')
+    description = forms.CharField(max_length=150, label='desctiption', widget = forms.Textarea)
     categories = []
     for category in Category.objects.all():
         categories.append(tuple([str(category.id), category.name]))
@@ -39,7 +39,7 @@ class NewListing(forms.Form):
 
 
 class NewBid(forms.Form):
-    price = forms.IntegerField(label='Place your bid')
+    price = forms.IntegerField(label='', widget=forms.NumberInput(attrs={'min' : 0, 'placeholder': 'Bid Amount'}))
 
 
 #--------PLACE BID----------
@@ -80,6 +80,24 @@ def watchlist(request):
     })
 
 
+def watchlist_add(request, listing_id):
+    if request.method == 'POST':
+        user = request.user
+        listing = Listing.objects.all().get(pk=int(listing_id))
+        current_wathlist = [x.listing for x in user.watchlist.all()]
+        if listing not in current_wathlist:
+            watchlist = Watchlist(user=user, listing=listing)
+            watchlist.save()
+            return HttpResponseRedirect(reverse('view_listing', args=[listing_id]))
+        else:
+            return HttpResponse('ERROR')
+
+
+def watchlist_remove(request, listing_id):
+    user = request.user
+    watchlist_item = user.watchlist.all().get(listing=int(listing_id))
+    watchlist_item.delete()
+    return HttpResponseRedirect(reverse('watchlist'))
 
 #---------LISTING PAGE------------
 

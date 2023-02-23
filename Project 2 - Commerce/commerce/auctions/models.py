@@ -19,11 +19,11 @@ class Category(models.Model):
 
 class Listing(models.Model):
     title = models.CharField(max_length=25)
-    description = models.CharField(max_length=150)
+    description = models.CharField(max_length=500)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='listing')
     seller = models.ForeignKey(User, on_delete=models.CASCADE, related_name='listing')
-    starter_price = models.IntegerField()
-    current_price = models.IntegerField(null=True, blank=True)
+    starter_price = models.PositiveIntegerField()
+    current_price = models.PositiveIntegerField(null=True, blank=True)
     image = models.CharField(max_length=255, null=True, blank=True)
     date_listed = models.DateTimeField(auto_now=True)
     active = models.BooleanField(default=True)
@@ -36,7 +36,7 @@ class Listing(models.Model):
 class Bid(models.Model):
     lot = models.ForeignKey(Listing, on_delete=models.CASCADE, related_name='bids')
     bidder = models.ForeignKey(User, on_delete=models.CASCADE, related_name='bids')
-    price = models.IntegerField()
+    price = models.PositiveIntegerField()
     date = models.DateTimeField(auto_now=True)
     final = models.BooleanField(default=False)
 
