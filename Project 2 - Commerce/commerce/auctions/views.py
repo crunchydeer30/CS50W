@@ -23,7 +23,7 @@ def get_current_price(listing_id):
 #------------------FORMS------------------
 
 class NewComment(forms.Form):
-    comment = forms.CharField(max_length=255, label='Leave comment')
+    comment = forms.CharField(max_length=255, label='Leave comment', widget = forms.Textarea)
 
 
 class NewListing(forms.Form):
@@ -74,7 +74,7 @@ def index(request):
 
 def watchlist(request):
     user = request.user
-    watchlist = user.watchlist.all()
+    watchlist = reversed(user.watchlist.all())
     return render(request, 'auctions/watchlist.html', {
         'watchlist': watchlist
     })
@@ -97,7 +97,7 @@ def watchlist_remove(request, listing_id):
     user = request.user
     watchlist_item = user.watchlist.all().get(listing=int(listing_id))
     watchlist_item.delete()
-    return HttpResponseRedirect(reverse('watchlist'))
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 #---------LISTING PAGE------------
 
@@ -106,19 +106,21 @@ def view_listing(request, listing_id):
     comment_form = NewComment()
     comments = reversed(listing.comments.all())
     bid_form = NewBid()
+    user = request.user
 
     listing_context = {'listing': listing,
                         'comment_form': comment_form,
                         'comments': comments,
-                        'bid_form': bid_form,}
+                        'bid_form': bid_form,
+                        }
+
+    if user.is_authenticated:
+        in_watchlist = listing in [x.listing for x in user.watchlist.all()]
+        listing_context['in_watchlist'] = in_watchlist
 
     if listing.bids.all():
         current_bid = listing.bids.all().order_by('-price').first()
         listing_context['current_bid'] = current_bid
-
-    if listing.active == False:
-        listing_context['winner'] = listing.bids.all().order_by('-price').first().bidder
-
 
     return render(request, 'auctions/listing.html', listing_context)
 
@@ -149,16 +151,17 @@ def new_listing(request):
 
 
 
-def close_listing(request, listing_id):
+def close_listing(request, listing_id):    
     if request.method == 'POST':
         listing = Listing.objects.all().get(pk=listing_id)
         if listing.bids.all():
             final_bid = listing.bids.all().order_by('-price').first()
             final_bid.final = True
             final_bid.save()
-            listing.active = False
-            listing.save()
+        listing.active = False
+        listing.save()    
         return HttpResponseRedirect(reverse('view_listing', args=[listing_id]))
+        
 
 
 #---------LEAVE COMMENT------------

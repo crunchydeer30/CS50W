@@ -15,6 +15,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 
+
+
+
 /*-------NAVBAR--------*/
 
 
@@ -44,13 +47,15 @@ header {
 }
 
 .nav-right img {
-    height: 3vh;
+    height: 2.5vh;
 }
 
 nav a {
     text-decoration: none;
     color: #000;
 }
+
+/*---------SEARCH BAR---------*/
 
 .search-bar {
     width: 15vw;
@@ -74,6 +79,11 @@ nav a {
 
 .search-bar input:focus {
     outline: none;
+}
+
+.search-bar img {
+    height: 1.5vh;
+    margin-right: -8px;
 }
 
 
@@ -156,6 +166,8 @@ nav a {
 
 
 
+
+
 /*-----------INDEX PAGE---------------*/
 /* ---------BANNERS-----------*/
 
@@ -197,8 +209,6 @@ nav a {
     color: #D21A2A;
     font-weight: 500;
 }
-
-
 
 /*-------BANNER ONE--------*/
 
@@ -350,29 +360,65 @@ main {
 
 
 
+
+
 /*----------LISTING PAGE-------------*/
 
-.listing-page-product-container {
+.listing-page-nav {
+    margin-left: 3vw;
+    margin-bottom: 2vh;
+    color: #8C8C8C;
+}
+
+.listing-page-nav a {
+    color: #8C8C8C;
+}
+
+
+.listing-page-container {
     display: grid;
     grid-template-columns: 0.8fr 1.2fr;
     gap: 8vw;
     padding: 3vh 3vw;
     align-items: center;
+    
 }
 
-.listing-page-product-container h1 {
-    font-size: 40px;
+.listing-page-inactive {
+    color: #C0C0C0 !important;
+}
+
+.listing-page-container h1 {
+    font-size: 36px;
     margin: 3vh 0;
 }
 
-.listing-page-product-image-container {
+.listing-page-image-container {
     background-color: #F2F2F250;
     height: 50vh;
     border-radius: 10px;
-    box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+    position: relative;
 }
 
-.listing-page-product-image-container img {
+
+.listing-page-image-inactive:before {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 100%;
+    transform: scale(1.1);
+    top: 0;
+    left: 0;
+    position: absolute;
+    background:rgb(0,0,0);
+    background: transparent\9;
+    background:rgba(200,200,200,0.5);        
+    z-index: 2;
+}
+
+
+.listing-page-image-container img {
     position: relative;
     object-fit: scale-down;
     width: auto;
@@ -385,32 +431,35 @@ main {
     transform: translate(-50%, -50%);
 }
 
-
-.listing-page-price {
-    margin-top: 4em;
-    border-top: 1px solid #8C8C8C60;
-    border-bottom: 1px solid #8C8C8C60;
-    padding: 1.5em 0;
-}
-
-.listing-page-product-description {
+.listing-page-description {
     color: #8C8C8C;
     line-height: 1.3;
+    font-size: 15px;
 }
 
+.listing-page-price {
+    margin-top: 3em;
+    border-top: 1px solid #8C8C8C20;
+    border-bottom: 1px solid #8C8C8C20;
+    padding: 2em 0;
+}
+
+
+
 .listing-page-current-bid {
-    font-size: 24px;
+    font-size: 22px;
     font-weight: 500;
-    margin-bottom: .3em;
+    margin-bottom: .4em;
 }
 
 .listing-page-original-price {
     color: #8C8C8C;
+    font-size: 14px;
 }
 
 .bid-form input[type='number']{
     padding: .5em .75em;
-    border: 2px solid black;
+    border: 1px solid black;
     font-size: 16px;
     margin-right: 1vw;
     border-radius: 5px;
@@ -422,7 +471,7 @@ main {
     padding: .5em 2em;
     background: #000;
     color: #fff;
-    border-radius: 50px;
+    border-radius: 10px;
     cursor: pointer;
 }
 
@@ -433,18 +482,25 @@ main {
     display: inline-block;
 }
 
-.listing-page-seller {
-    color: #8C8C8C;
-    margin: .2em 0;
+.listing-page-seller-date {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
 }
 
-.listing-page-product-buttons {
-    margin-top: 8vh;
+
+.listing-page-seller-date p {
+    color: #8C8C8C;
+    margin: .5em 0;
+}
+
+.listing-page-buttons {
+    margin-top: 10vh;
     display: flex;
     column-gap: 1vw;
     row-gap: 2vh;
 }
-
 
 .watchlist-add input {
     font-size: 16px;
@@ -452,18 +508,116 @@ main {
     padding: .5em 2em;
     color: #000;
     background: #fff;
-    border-radius: 50px;
+    border-radius: 10px;
     cursor: pointer;
 }
 
 .watchlist-add input:hover {
     border: 2px solid black;
-    padding: .5em 2em;
     color: #fff;
     background: #000;
-    border-radius: 50px;
     transition: .3s;
 }
+
+.listing-page-close-listing {
+    border: 2px solid #D21A2A;
+    padding: .5em 2em;
+    color: #fff;
+    background: #D21A2A;
+    border-radius: 50px;
+    transition: .3s;
+    font-size: 16px;
+}
+
+.listing-page-close-listing:hover {
+    border: 2px solid #D21A2A;
+    color: #D21A2A;
+    background: #fff;
+    transition: .3s;
+    cursor: pointer;
+}
+
+.comment-section {
+    padding: 13vh 0 10vh 3vw;
+}
+
+.comment_form {
+    margin-top: 5vh;
+}
+
+.comment_form label {
+    display: block;
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.comment_form textarea {
+    display: block;
+    width: 35vw;
+    height: 15vh;
+    padding: 1em;
+    font-size: 16px;
+    
+
+    margin: 3vh 0;
+}
+
+.comment_form input[type='submit'] {
+    display: block;
+    font-size: 16px;
+    border: 2px solid black;
+    padding: .5em 2em;
+    background: #000;
+    color: #fff;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.comment_form input[type='submit']:hover {
+    background: #fff;
+    color: #000;
+    transition: 0.3s;
+}
+
+.user-comments {
+    margin-top: 5vh;
+    width: 40vw;
+}
+
+.comment {
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+    padding: 1vh 1vw;   
+    border-radius: 10px;
+}
+
+.comment:not(last-child) {
+    margin-bottom: 3vh;
+}
+
+.comment-header {
+    display: flex;
+    align-items: center;
+    column-gap: 1em;
+}
+
+.comment-author {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.comment-date {
+    margin-left: auto;
+    color: #8C8C8C;
+}
+
+.comment-text {
+    padding: 1em .5em;
+}
+
+
+
+/*-------------WATCHLIST----------------*/
+
 
 .watchlist-grid {
     margin-top: 10vh;
@@ -537,6 +691,13 @@ main {
     right: 3vw;
     height: 2.5vh;
 }
+
+
+
+
+
+/* MEDIA QUERIES */
+
 
 @media (max-width: 1440px) {
     main {
