@@ -1,0 +1,60 @@
+{% extends 'auctions/layout.html' %}
+{% load static %}
+
+{% block body %}
+    <h1>My  Listings</h1>
+    <section class="watchlist-grid">
+        <h2>Active Listings:</h2>
+        {% for listing in active_listings %}
+            <article class="watchlist-item {% if not listing.active %}watchlist-item-inactive{% endif %}">
+                <a href="{% url 'view_listing' listing_id=listing.id %}" class="watchlist-item-image-container
+                {% if not listing.active %}watchlist-item-image-inactive{% endif %}">
+                    <img src="{{ listing.image }}">
+                </a>
+                <section class="watchlist-item-info">
+                    <h2 class="watchlist-item-title">{{ listing.title }}</h2>
+                    <p class="watchlist-item-description">{{ listing.description }}</p>
+                    <div class="watchlist-item-price">
+                        {% if listing.current_price != listing.starter_price %}
+                            <p class="watchlist-item-current-bid">Current Bid: &dollar;{{ listing.current_price }}</p>
+                            <p class="watchlist-item-original-price">Original price: &dollar;{{ listing.starter_price }}</p>
+                        {% else %}
+                            <p class="watchlist-item-current-bid">Price: &dollar;{{ listing.starter_price }}</p>
+                            <p class="watchlist-item-original-price">No Bids</p>
+                        {% endif %}
+                    </div>
+                </section>            
+                <a href="{% url 'watchlist_remove' listing_id=listing.id %}">
+                    <img src="{% static 'auctions/images/cross.svg' %}" class="remove-from-watchlist">
+                </a>
+            </article>
+        {% empty %}
+            <h3>No active listings</h3>
+        {% endfor %}
+        <h2>Inactive Listings:</h2>
+        {% for listing in inactive_listings %}
+            <article class="watchlist-item {% if not listing.active %}watchlist-item-inactive{% endif %}">
+                <a href="{% url 'view_listing' listing_id=listing.id %}" class="watchlist-item-image-container
+                {% if not listing.active %}watchlist-item-image-inactive{% endif %}">
+                    <img src="{{ listing.image }}">
+                </a>
+                <section class="watchlist-item-info">
+                    <h2 class="watchlist-item-title">{{ listing.title }}</h2>
+                    <p class="watchlist-item-description">{{ listing.description }}</p>
+                    <div class="watchlist-item-price">
+                        {% if listing.current_price != listing.starter_price %}
+                            <p class="watchlist-item-current-bid">Current Bid: &dollar;{{ listing.current_price }}</p>
+                            <p class="watchlist-item-original-price">Original price: &dollar;{{ listing.starter_price }}</p>
+                        {% else %}
+                            <p class="watchlist-item-current-bid">Price: &dollar;{{ listing.starter_price }}</p>
+                            <p class="watchlist-item-original-price">No Bids</p>
+                        {% endif %}
+                    </div>
+                </section>            
+                <a href="{% url 'watchlist_remove' listing_id=listing.id %}">
+                    <img src="{% static 'auctions/images/cross.svg' %}" class="remove-from-watchlist">
+                </a>
+            </article>
+        {% endfor %}
+</section>
+{% endblock %}

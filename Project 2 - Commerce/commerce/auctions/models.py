@@ -20,8 +20,8 @@ class Category(models.Model):
 class Listing(models.Model):
     title = models.CharField(max_length=25)
     description = models.CharField(max_length=500)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='listing')
-    seller = models.ForeignKey(User, on_delete=models.CASCADE, related_name='listing')
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='listings')
+    seller = models.ForeignKey(User, on_delete=models.CASCADE, related_name='listings')
     starter_price = models.PositiveIntegerField()
     current_price = models.PositiveIntegerField(null=True, blank=True)
     image = models.CharField(max_length=255, null=True, blank=True)

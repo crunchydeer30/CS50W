@@ -5,8 +5,9 @@
     <h1>Watchlist</h1>
     <section class="watchlist-grid">
         {% for item in watchlist %}
-            <article class="watchlist-item">
-                <a href="{% url 'view_listing' listing_id=item.listing.id %}" class="watchlist-item-image-container">
+            <article class="watchlist-item {% if not item.listing.active %}watchlist-item-inactive{% endif %}">
+                <a href="{% url 'view_listing' listing_id=item.listing.id %}" class="watchlist-item-image-container
+                {% if not item.listing.active %}watchlist-item-image-inactive{% endif %}">
                     <img src="{{ item.listing.image }}">
                 </a>
                 <section class="watchlist-item-info">

@@ -33,10 +33,39 @@
                         <img src="{% static 'auctions/images/favorite.svg' %}">
                         Watchlist
                     </a>
-                    <a href = "/admin" class="nav-user">
-                        <img src="{% static 'auctions/images/user.svg' %}">
-                        {{ user.username }}
-                    </a>
+                    <div class="dropdown">
+                        <button href = "/admin" class="nav-user">
+                            <img src="{% static 'auctions/images/user.svg' %}">
+                            {{ user.username }}
+                            <img src="{% static 'auctions/images/dropdown.svg' %}" class="dropdown-icon">
+                        </button>
+                        <ul>
+                            <li>
+                                <a href="/admin">
+                                    <img src="{% static 'auctions/images/user.svg' %}">
+                                    Profile
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'my_listings' %}">
+                                    <img src="{% static 'auctions/images/list.ico' %}">
+                                    Listings
+                                </a>
+                            </li> 
+                            <li>
+                                <a href="">
+                                    <img src="{% static 'auctions/images/bid.svg' %}">
+                                    Bids
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'logout' %}" class="nav-logout">
+                                    <img src="{% static 'auctions/images/logout.svg' %}">
+                                    Logout
+                                </a>
+                            </li>
+                        </ul>
+                    </div>                    
                     <!--<a href="{% url 'logout' %}">Logout</a>-->
                 {% else %}
                     <a href="{% url 'login' %}" class="nav-login">Login</a>

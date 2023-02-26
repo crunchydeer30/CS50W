@@ -96,11 +96,112 @@ nav a {
     margin-right: .5em;
 }
 
+nav button {
+    border: none;
+    font-size: 16px;
+    background: #fff;   
+    cursor: pointer;
+}
+
+.dropdown {
+    position: relative;
+}
+
+.dropdown-icon {
+    transform: scale(1.2);
+}
+
+.dropdown ul {
+    position: absolute;
+    top: 3vh;
+    right: 5px;
+    background: white;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    border-radius: 5px;
+    opacity: 0;
+    transition: .2s ease-in-out;
+    visibility: hidden;
+    transform: translateY(-20px);
+    list-style: none;
+    width: 150px;
+}
+
+.dropdown ul:before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    right: 10px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 10px 10px 10px;
+    border-color: transparent transparent white transparent;
+    filter: drop-shadow(0 -1px 1px rgba(99, 99, 99, 0.2));
+}
+
+
+.dropdown ul li{
+    text-align: left;
+    position: relative;
+    overflow: hidden;
+}
+
+.dropdown ul li:first-child{
+    border-radius: 5px 5px 0 0;
+}
+
+.dropdown ul li:last-child{
+    border-radius: 0 0 5px 5px;
+}
+
+.dropdown ul li:before{
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 2px;
+    height: 100%;
+    background: #D21A2A;
+    opacity: 0;
+    z-index: 2;
+}
+
+.dropdown li:hover {
+    background: #EEE;
+}
+
+.dropdown li:hover::before {
+    opacity: 1;
+    transition: 0;
+}
+
+
+.dropdown ul li a {
+    display: flex;
+    align-items: center;
+    padding: .85em 1em;
+}
+
+.dropdown ul li a img {
+    margin-right: .75em;
+    width: 1.4em;
+}
+
+.dropdown button:focus + ul {
+    opacity: 1;
+    transform: translateY(0); 
+    visibility: visible;
+}
+
+.nav-logout {
+    color: #D21A2A;
+}
+
 .nav-login, .nav-register {
     display: inline-block;
     padding: .5em 1em;
     border-radius: 50px;
-    transition: .3s;
+    transition: .2s;
 }
 
 .nav-login {
@@ -132,38 +233,6 @@ nav a {
     color: white;
     margin-left: -10px;
 }
-
-
-@keyframes moveInRight {
-    0% {
-        opacity: 0;
-        transform: translateX(250px);
-    }
-
-    80% {
-        transform: translateX(-30px);
-    }
-
-    100% {
-        opacity: 1;
-        transform: translate(0);
-    }
-}
-
-
-@keyframes moveInDown {
-    0% {
-        opacity: 0;
-        transform: translateY(100px);
-    }
-
-
-    100% {
-        opacity: 1;
-        transform: translate(0);
-    }
-}
-
 
 
 
@@ -208,6 +277,37 @@ nav a {
     text-decoration: none;
     color: #D21A2A;
     font-weight: 500;
+}
+
+
+@keyframes moveInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(250px);
+    }
+
+    80% {
+        transform: translateX(-30px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+
+
+@keyframes moveInDown {
+    0% {
+        opacity: 0;
+        transform: translateY(100px);
+    }
+
+
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
 }
 
 /*-------BANNER ONE--------*/
@@ -356,8 +456,15 @@ main {
     border-radius: 5px;
     font-size: 14px;
     margin-top: 1em;
+    transition: 0.3s;
 }
 
+
+.index-listing-view:hover {
+    color: #fff;
+    border: 1px solid black;
+    background: #000;
+}
 
 
 
@@ -408,6 +515,7 @@ main {
     width: 100%;
     height: 100%;
     transform: scale(1.1);
+    border-radius: 10px;
     top: 0;
     left: 0;
     position: absolute;
@@ -457,30 +565,6 @@ main {
     font-size: 14px;
 }
 
-.bid-form input[type='number']{
-    padding: .5em .75em;
-    border: 1px solid black;
-    font-size: 16px;
-    margin-right: 1vw;
-    border-radius: 5px;
-}
-
-.bid-form input[type='submit']{
-    font-size: 16px;
-    border: 2px solid black;
-    padding: .5em 2em;
-    background: #000;
-    color: #fff;
-    border-radius: 10px;
-    cursor: pointer;
-}
-
-.bid-form input[type='submit']:hover {
-    background: #fff;
-    color: #000;
-    transition: 0.3s;
-    display: inline-block;
-}
 
 .listing-page-seller-date {
     display: flex;
@@ -500,42 +584,75 @@ main {
     display: flex;
     column-gap: 1vw;
     row-gap: 2vh;
+    
 }
 
-.watchlist-add input {
-    font-size: 16px;
-    border: 2px solid black;
-    padding: .5em 2em;
-    color: #000;
-    background: #fff;
-    border-radius: 10px;
+.listing-page-buttons input:not(input[type='number']) {
     cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    padding: .5em 2em;
+    transition: .15s;
+}
+
+.bid-form input[type='number']{
+    padding: .5em .75em;
+    border: 1px solid black;
+    font-size: 16px;
+    margin-right: 1vw;
+    border-radius: 5px;
+}
+
+.bid-form input[type='submit']{ 
+    border: 2px solid black;
+    background: #000;
+    color: #fff;  
+}
+
+.bid-form input[type='submit']:hover {
+    background: #fff;
+    color: #000;
+}
+
+
+.watchlist-add input {
+    border: 2px solid black;
+    color: #000;
+    background: #fff;    
 }
 
 .watchlist-add input:hover {
-    border: 2px solid black;
+    border: 2px solid #000;
     color: #fff;
     background: #000;
-    transition: .3s;
 }
 
 .listing-page-close-listing {
     border: 2px solid #D21A2A;
-    padding: .5em 2em;
     color: #fff;
     background: #D21A2A;
-    border-radius: 50px;
-    transition: .3s;
-    font-size: 16px;
 }
 
 .listing-page-close-listing:hover {
     border: 2px solid #D21A2A;
     color: #D21A2A;
     background: #fff;
-    transition: .3s;
-    cursor: pointer;
+    
 }
+
+
+.listing-page-close-auction {
+    border: 2px solid #000;
+    color: #000;
+    background: #fff;
+}
+
+
+.listing-page-close-auction:hover {
+    color: #fff;
+    background: #000;
+}
+
 
 .comment-section {
     padding: 13vh 0 10vh 3vw;
@@ -553,12 +670,11 @@ main {
 
 .comment_form textarea {
     display: block;
-    width: 35vw;
+    width: 700px;
     height: 15vh;
     padding: 1em;
     font-size: 16px;
-    
-
+    border-radius: 5px;
     margin: 3vh 0;
 }
 
@@ -569,7 +685,7 @@ main {
     padding: .5em 2em;
     background: #000;
     color: #fff;
-    border-radius: 10px;
+    border-radius: 5px;
     cursor: pointer;
 }
 
@@ -581,7 +697,7 @@ main {
 
 .user-comments {
     margin-top: 5vh;
-    width: 40vw;
+    width: 700px;
 }
 
 .comment {
@@ -624,6 +740,10 @@ main {
     
 }
 
+.watchlist-grid h2 {
+    margin-bottom: 5vh;
+}
+
 .watchlist-item a {
     display: block;
 }
@@ -634,19 +754,25 @@ main {
     /*box-shadow: rgb(0 0 0 / 5%) 0px 0px 0px 1px;
     padding: 5vh 3vw;*/
     border-radius: 20px;
-    margin-bottom: 10vh;
+    margin-bottom: 5vh;
     column-gap: 5vw;
     align-items: center;
     position: relative;
     box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
-    padding: 4vh 3vw;
+    padding: 2.5vh 3vw;
 }
 
+.watchlist-item-inactive {
+    color: #C0C0C0 !important;
+}
+
+
 .watchlist-item-image-container {
-    width: 15vw;
-    height: 25vh;
+    width: 8vw;
+    height: 15vh;
     background-color: #F2F2F250;
     box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+    position: relative;
 }
 
 .watchlist-item-image-container img {
@@ -655,19 +781,36 @@ main {
     object-fit: scale-down;
 }
 
+.watchlist-item-image-inactive:before {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 100%;
+    transform: scale(1.1);
+    border-radius: 10px;
+    top: 0;
+    left: 0;
+    position: absolute;
+    background:rgb(0,0,0);
+    background: transparent\9;
+    background:rgba(200,200,200,0.5);        
+    z-index: 2;
+}
+
+
 .watchlist-item-info {
     width: 60%;
 }
 
 .watchlist-item-title {
-    font-size: 28px;
-    margin-bottom: .75em;
+    font-size: 20px;
+    margin-bottom: .5em;
 }
 
 .watchlist-item-description {
     color: #8C8C8C;
     font-size: 14px;
-    margin-bottom: 3em;
+    margin-bottom: 2em;
 }
 
 .watchlist-item-price {
@@ -693,8 +836,79 @@ main {
 }
 
 
+/*--------------LOGIN PAGE---------------*/
 
 
+.login {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.login-logo {
+    width: 15vw;
+}
+
+.login h1 {
+    color: #D21A2A;
+    margin: 3vh 0;
+}
+
+.login form {
+    display: flex;
+    flex-direction: column;
+}
+
+.login form label {
+    display: block;
+    text-align: left;
+    color: #808080;
+    margin-bottom: 1vh;
+}
+
+.login input {
+    width: 100%;
+    margin-bottom: 3vh;
+    border: 1px solid #C0C0C0;
+    font-size: 16px;
+    padding: .5em 1em;
+    border-radius: 5px;
+}
+
+.login input:focus {
+    outline: none;  
+}
+
+
+.login input[type=submit] {
+    color: #fff;
+    background: #D21A2A;
+    border: 1px solid #D21A2A;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.login input[type=submit]:hover {
+    color: #D21A2A;
+    background: #fff;
+    transition: .3s;
+}
+
+.login a {
+    color: #D21A2A;
+}
+
+.login hr {
+    border-color: #C0C0C020;
+    margin-bottom: 2vh;
+}
+
+.login-error {
+    margin-bottom: 2vh;
+    color: #D21A2A;
+}
 
 /* MEDIA QUERIES */
 

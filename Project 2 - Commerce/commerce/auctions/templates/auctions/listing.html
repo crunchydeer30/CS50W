@@ -31,7 +31,13 @@
                 {% if user.is_authenticated and user == listing.seller and listing.active %}
                     <form action="{% url 'close_listing' listing_id=listing.id %}" method="POST">
                         {% csrf_token %}
-                        <input type="submit" value="Close Listing" class="listing-page-close-listing">
+                        <input type="submit" value="Cancel Listing" class="listing-page-close-listing">
+                    </form>
+                    <form action="{% url 'close_listing' listing_id=listing.id %}" method="POST">
+                        {% csrf_token %}
+                        <div class="close-auction">
+                            <input type="submit" value="Close Auction" class="listing-page-close-auction">
+                        </div>                        
                     </form>
                 {% elif user.is_authenticated and listing.active %}
                     <form action="{% url 'place_bid' listing_id=listing.id %}" method='POST' class="bid-form">

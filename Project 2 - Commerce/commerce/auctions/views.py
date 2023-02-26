@@ -37,7 +37,6 @@ class NewListing(forms.Form):
     image = forms.CharField(max_length=255, required=False)
 
 
-
 class NewBid(forms.Form):
     price = forms.IntegerField(label='', widget=forms.NumberInput(attrs={'min' : 0, 'placeholder': 'Bid Amount'}))
 
@@ -60,6 +59,8 @@ def place_bid(request, listing_id):
             else:
                 return HttpResponseRedirect(reverse('view_listing', args=[listing_id]))
 
+
+
 #---------INDEX PAGE------------
 
 def index(request):
@@ -69,35 +70,6 @@ def index(request):
     })
 
 
-
-#---------WATCHLIST PAGE------------
-
-def watchlist(request):
-    user = request.user
-    watchlist = reversed(user.watchlist.all())
-    return render(request, 'auctions/watchlist.html', {
-        'watchlist': watchlist
-    })
-
-
-def watchlist_add(request, listing_id):
-    if request.method == 'POST':
-        user = request.user
-        listing = Listing.objects.all().get(pk=int(listing_id))
-        current_wathlist = [x.listing for x in user.watchlist.all()]
-        if listing not in current_wathlist:
-            watchlist = Watchlist(user=user, listing=listing)
-            watchlist.save()
-            return HttpResponseRedirect(reverse('view_listing', args=[listing_id]))
-        else:
-            return HttpResponse('ERROR')
-
-
-def watchlist_remove(request, listing_id):
-    user = request.user
-    watchlist_item = user.watchlist.all().get(listing=int(listing_id))
-    watchlist_item.delete()
-    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 #---------LISTING PAGE------------
 
@@ -177,6 +149,50 @@ def leave_comment(request, listing_id):
             comment = Comment(comment=text, author=author, listing=listing)
             comment.save()
             return HttpResponseRedirect(reverse('view_listing', args=[listing.id]))
+
+
+
+#---------WATCHLIST PAGE------------
+
+def watchlist(request):
+    user = request.user
+    watchlist = reversed(user.watchlist.all())
+    return render(request, 'auctions/watchlist.html', {
+        'watchlist': watchlist
+    })
+
+
+def watchlist_add(request, listing_id):
+    if request.method == 'POST':
+        user = request.user
+        listing = Listing.objects.all().get(pk=int(listing_id))
+        current_wathlist = [x.listing for x in user.watchlist.all()]
+        if listing not in current_wathlist:
+            watchlist = Watchlist(user=user, listing=listing)
+            watchlist.save()
+            return HttpResponseRedirect(reverse('view_listing', args=[listing_id]))
+        else:
+            return HttpResponse('ERROR')
+
+
+def watchlist_remove(request, listing_id):
+    user = request.user
+    watchlist_item = user.watchlist.all().get(listing=int(listing_id))
+    watchlist_item.delete()
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+
+
+#----------MY LISTINGS-------------
+
+def my_listings(request):
+    user = request.user
+    active_listings = reversed(user.listings.all().filter(active=True))
+    inactive_listings = reversed(user.listings.all().filter(active=False))
+    return render(request, 'auctions/my_listings.html', {
+        'active_listings': active_listings,
+        'inactive_listings': inactive_listings
+    })
 
 
 
