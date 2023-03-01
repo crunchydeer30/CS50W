@@ -1,0 +1,3 @@
+{% for result in results %}
+<li><a href="{% url 'view_listing' listing_id=result.id %}">{{ result.title }}</a></li>
+{% endfor %}

@@ -1,11 +1,14 @@
 {% extends "auctions/layout.html" %}
 {% load static %}
+
+{% block title %} Register {% endblock %}
+
 {% block body %}
 
     <main>
         <section class="login">
             
-            <img src="{% static 'auctions/images/logo.svg' %}" class="login-logo">
+            <!--<img src="{% static 'auctions/images/logo.svg' %}" class="login-logo">-->
             <h1>SIGN UP</h1>
             <form action="{% url 'register' %}" method="post">
                 {% csrf_token %}

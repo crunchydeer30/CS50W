@@ -18,8 +18,18 @@ def get_current_price(listing_id):
     else:
         return listing.starter_price
 
-
-
+def search(request):
+    q = request.GET['q']
+    if len(q) == 0:
+        results = ''
+    else:
+        results = Listing.objects.all().filter(active=True).filter(title__contains=q)[:10]
+        if len(results) == 0:
+            results = ''
+    return render(request, 'auctions/search.html', {'results' : results})
+    #return render(request,'auctions/search.html', {
+    #    'results': results
+    #})
 #------------------FORMS------------------
 
 class NewComment(forms.Form):
@@ -113,6 +123,7 @@ def new_listing(request):
             date_listed = date.today()
             listing = Listing(title=title, description=description, category=category, seller=seller, starter_price=starter_price, image=image, date_listed=date_listed, current_price=starter_price)
             listing.save()
+        
     
     listing_form = NewListing()
     seller = request.user

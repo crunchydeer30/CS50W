@@ -1,10 +1,14 @@
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: 'Roboto', sans-serif;
-    box-sizing: border-box;
 }
 
+
+body {
+    
+    font-family: 'Roboto', sans-serif;
+}
 
 ::selection {
     background: #EEE; /* WebKit/Blink Browsers */
@@ -13,7 +17,6 @@
 h1, h2, h3, h4, h5, h6 {
     font-weight: 500;
 }
-
 
 
 
@@ -58,23 +61,84 @@ nav a {
 /*---------SEARCH BAR---------*/
 
 .search-bar {
-    width: 15vw;
+    width: 20vw;
     border-radius: 50px;
-    height: 2.75vh;
     background-color: #EEEEEE80;
-    padding: .8em 1.5em;
+    padding: .5em 1.5em;
     transition: .5s;
+    position: relative;
+    
 }
+
+#search-results {
+    position: absolute;
+    width: 100%;
+    list-style-type: none;
+    align-self: center;
+    top: 100%;
+    right: .01em;
+    background: #fff;
+    visibility: hidden;
+    border-radius: 0 0 10px 10px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 3px 0px;
+    overflow: hidden;
+}
+
+
+
+#search-results li a{
+    display: inline-block;
+    width: 100%;
+    padding: .5em 1.5em;
+    position: relative;
+}
+
+#search-results li a:last-child {
+    margin-bottom: 4px;
+}
+
+
+#search-results li a:before{
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 2px;
+    height: 100%;
+    background: #D21A2A;
+    opacity: 0;
+    z-index: 2;
+}
+
+.search-bar ul li a:hover::before{
+    opacity: 1 !important;
+}
+
+
+.search-bar:focus-within ul{
+    visibility: visible !important;
+    font-size: 15px;
+}
+
+
+.search-bar:focus-within ul li a:hover{
+    background: #EEE;
+}
+
 
 .search-bar input {
     width: 100%;
     background: #ffffff00;
     border: none;
+    font-size: 15px;
 }
 
 .search-bar:focus-within {
-    width: 20vw;
-    transition: .5s;
+    width: 30vw;
+    transition: .4s;
+    border-radius: 10px 10px 0 0;
+    background: #fff;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
 }
 
 .search-bar input:focus {
@@ -248,7 +312,7 @@ nav button {
                          "one one three";
     row-gap: 2vw;
     column-gap: 4vw;
-    margin-bottom: 10vh;
+    margin-bottom: 15vh;
 }
 
 .index-banner-1, .index-banner-2, .index-banner-3 {
@@ -487,8 +551,7 @@ main {
     grid-template-columns: 0.8fr 1.2fr;
     gap: 8vw;
     padding: 3vh 3vw;
-    align-items: center;
-    
+    align-items: center;    
 }
 
 .listing-page-inactive {
@@ -512,16 +575,14 @@ main {
 .listing-page-image-inactive:before {
     content: "";
     display: block;
+    transform: scale(1.025);
     width: 100%;
     height: 100%;
-    transform: scale(1.1);
     border-radius: 10px;
     top: 0;
     left: 0;
     position: absolute;
-    background:rgb(0,0,0);
-    background: transparent\9;
-    background:rgba(200,200,200,0.5);        
+    background:rgba(200,200,200,0.4);        
     z-index: 2;
 }
 
@@ -587,12 +648,48 @@ main {
     
 }
 
-.listing-page-buttons input:not(input[type='number']) {
+
+.listing-page-btn {
     cursor: pointer;
     font-size: 16px;
     border-radius: 5px;
     padding: .5em 2em;
     transition: .15s;
+}
+
+.listing-btn-red {
+    border: 2px solid #D21A2A;
+    color: #fff;
+    background: #D21A2A;
+}
+
+.listing-btn-red:hover {
+    border-color: #bd1725;
+    background: #bd1725;
+}
+
+
+.listing-btn-black {
+    border: 2px solid black;
+    background: #000;
+    color: #fff;  
+}
+
+.listing-btn-black:hover {
+    background: #fff;
+    color: #000;
+}
+
+.listing-btn-white {
+    border: 2px solid black;
+    color: #000;
+    background: #fff;
+}
+
+.listing-btn-white:hover {
+    border: 2px solid #000;
+    color: #fff;
+    background: #000;
 }
 
 .bid-form input[type='number']{
@@ -603,59 +700,9 @@ main {
     border-radius: 5px;
 }
 
-.bid-form input[type='submit']{ 
-    border: 2px solid black;
-    background: #000;
-    color: #fff;  
-}
-
-.bid-form input[type='submit']:hover {
-    background: #fff;
-    color: #000;
-}
-
-
-.watchlist-add input {
-    border: 2px solid black;
-    color: #000;
-    background: #fff;    
-}
-
-.watchlist-add input:hover {
-    border: 2px solid #000;
-    color: #fff;
-    background: #000;
-}
-
-.listing-page-close-listing {
-    border: 2px solid #D21A2A;
-    color: #fff;
-    background: #D21A2A;
-}
-
-.listing-page-close-listing:hover {
-    border: 2px solid #D21A2A;
-    color: #D21A2A;
-    background: #fff;
-    
-}
-
-
-.listing-page-close-auction {
-    border: 2px solid #000;
-    color: #000;
-    background: #fff;
-}
-
-
-.listing-page-close-auction:hover {
-    color: #fff;
-    background: #000;
-}
-
-
 .comment-section {
-    padding: 13vh 0 10vh 3vw;
+    padding: 0 3vw;
+    margin-top: 13vh;
 }
 
 .comment_form {
@@ -678,22 +725,6 @@ main {
     margin: 3vh 0;
 }
 
-.comment_form input[type='submit'] {
-    display: block;
-    font-size: 16px;
-    border: 2px solid black;
-    padding: .5em 2em;
-    background: #000;
-    color: #fff;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.comment_form input[type='submit']:hover {
-    background: #fff;
-    color: #000;
-    transition: 0.3s;
-}
 
 .user-comments {
     margin-top: 5vh;
@@ -786,14 +817,12 @@ main {
     display: block;
     width: 100%;
     height: 100%;
-    transform: scale(1.1);
+    transform: scale(1.025);
     border-radius: 10px;
     top: 0;
     left: 0;
     position: absolute;
-    background:rgb(0,0,0);
-    background: transparent\9;
-    background:rgba(200,200,200,0.5);        
+    background:rgba(200,200,200,0.3);        
     z-index: 2;
 }
 
@@ -888,12 +917,12 @@ main {
     border: 1px solid #D21A2A;
     cursor: pointer;
     text-transform: uppercase;
+    transition: .3s;
 }
 
 .login input[type=submit]:hover {
-    color: #D21A2A;
-    background: #fff;
-    transition: .3s;
+    background: #bd1725;
+    border-color: #bd1725;
 }
 
 .login a {
@@ -921,4 +950,124 @@ main {
     .watchlist-item-info {
         width: 80%;
     }
+}
+
+
+@media (max-device-width: 700px) {
+    main {
+        margin: 5vh auto;
+    }
+
+
+    .index-listings {
+        grid-template-columns: 1fr;
+    }
+
+    .listing-page-container {
+        grid-template-columns: 1fr;
+    }
+
+    .listing-page-image-container {
+        height: auto;
+        width: 90%;
+        justify-self: center;
+    }
+
+    .listing-page-image-container img {
+        top: 0;
+        left: 0;
+        transform: translate(0, 0);
+    }
+
+    .watchlist-item {
+        grid-template-columns: 1fr;
+        padding: 5vh 5vw;
+    }
+
+    .watchlist-item-image-container {
+        width: 80%;
+        height: auto;
+        justify-self: center;
+        margin-bottom: 4vh;
+    }
+
+    .watchlist-item-image-container:before {
+        transform: scale(1);
+    }
+
+    .remove-from-watchlist {
+        top: 2vh;
+        transform: scale(1.5);
+    }
+
+    .comment_form textarea {
+        width: 100%;
+    }
+
+    .user-comments {
+        margin-top: 5vh;
+        width: 100%;
+    }
+
+    .listing-page-buttons {
+        flex-direction: column;
+        
+    }
+
+    .comment-section {
+        padding: 5vh 3vw;
+        padding-bottom: 0;
+    }
+
+    header {
+        overflow: hidden;
+    }
+
+    .bid-form {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 5vw;
+        margin-right: 0;
+    }
+    
+    .bid-form input[type='number']{
+        width: 100%;
+    }
+
+
+    .index-banners {
+        grid-template-columns: 1fr;
+        grid-template-areas: "one"
+                             "two"
+                             "three";
+        row-gap: 8vw;
+    }
+
+    
+    .index-banner-1, .index-banner-2, .index-banner-3 {
+        padding: 3vh;
+    }
+
+    .index-banner-1 div, .index-banner-2 div, .index-banner-3 div {
+        row-gap: 1em;
+        width: 60%;
+    }
+
+
+    .index-banner-1 img, .index-banner-2 img, .index-banner-3 img {
+        width: 30%;
+    }
+
+    .index-banner-1 h2, .index-banner-2 h2, .index-banner-3 h2 {
+        font-size: 18px;
+    }
+
+    .index-banner-1 p {
+        font-size: 14px;
+    }
+    
+    .login {
+        width: 80%;
+    }
+
 }

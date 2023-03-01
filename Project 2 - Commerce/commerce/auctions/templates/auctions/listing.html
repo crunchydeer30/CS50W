@@ -1,6 +1,12 @@
 {% extends 'auctions/layout.html' %}
 {% load static %}
 
+
+
+{% block title %} {{ listing.title }} {% endblock %}
+
+
+
 {% block body %}
     {% if winner == user %}
         <h1>You Won!</h1>
@@ -31,29 +37,29 @@
                 {% if user.is_authenticated and user == listing.seller and listing.active %}
                     <form action="{% url 'close_listing' listing_id=listing.id %}" method="POST">
                         {% csrf_token %}
-                        <input type="submit" value="Cancel Listing" class="listing-page-close-listing">
+                        <input type="submit" value="Cancel Listing" class="listing-page-btn listing-btn-red">
                     </form>
                     <form action="{% url 'close_listing' listing_id=listing.id %}" method="POST">
                         {% csrf_token %}
                         <div class="close-auction">
-                            <input type="submit" value="Close Auction" class="listing-page-close-auction">
+                            <input type="submit" value="Close Auction" class="listing-page-btn listing-btn-black">
                         </div>                        
                     </form>
                 {% elif user.is_authenticated and listing.active %}
                     <form action="{% url 'place_bid' listing_id=listing.id %}" method='POST' class="bid-form">
                     {% csrf_token %}
                     {{ bid_form }}
-                        <input type="submit" value="Place Bid">
+                        <input type="submit" value="Place Bid" class="listing-page-btn listing-btn-black">
                     </form>
                     {% if not in_watchlist %}
                     <form action="{% url 'watchlist_add' listing_id=listing.id %}" method="POST" class="watchlist-add">
                         {% csrf_token %}
-                        <input type="submit" value="Watchlist">                        
+                        <input type="submit" value="Watchlist" class="listing-page-btn listing-btn-white">                        
                     </form>
                     {% else %}
                     <form action="{% url 'watchlist_remove' listing_id=listing.id %}" method="POST" class="watchlist-add">
                         {% csrf_token %}
-                        <input type="submit" value="Unfollow">                        
+                        <input type="submit" value="Unfollow" class="listing-page-btn listing-btn-white">                        
                     </form>
                     {% endif %}
                 {% endif %}
@@ -67,7 +73,7 @@
         <form action="{% url 'leave_comment' listing_id=listing.id %}" method="POST" class="comment_form">
             {% csrf_token %}
             {{ comment_form }}
-            <input type="submit" value="Submit">
+            <input type="submit" value="Submit" class="listing-page-btn listing-btn-black">
         </form>
         {% endif %}
         <section class="user-comments">
