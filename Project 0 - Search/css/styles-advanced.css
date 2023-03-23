@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 * {
     margin: 0;
     padding: 0;
@@ -165,4 +166,173 @@ footer a:not(:last-child) {
 .footer-links {
     display: flex;
     justify-content: space-between;
+=======
+* {
+    margin: 0;
+    padding: 0;
+    font-family: arial, sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+main {
+    margin-bottom: 10vh;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 13px;
+    padding: 1em 1.5em;
+}
+
+header div {
+    display: flex;
+    align-items: center;
+}
+
+header div a:first-child {
+    margin-right: 0.75em;
+}
+#logo img {
+    height: 2.5vh;
+}
+
+#account-icon {
+    padding: 0.3em;
+    border-radius: 50%;
+    display: flex;
+}
+
+#account-icon img {
+    border-radius: 50%;
+}
+
+#account-icon:hover {
+    background-color: #f0f0f0;
+}
+
+#apps-icon {
+    border-radius: 50%;  
+    padding: .65em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#apps-icon:hover {
+    cursor: pointer;
+    background-color: #f0f0f0;
+}
+
+h1 {
+    font-size: 20px;
+    color: #d93025;
+    font-weight: normal;
+    padding: 1.25em 2.25em;
+    border-bottom: 1px solid #ebebeb;;
+}
+
+#myform {
+    display: grid;
+    grid-template-columns: auto 1fr 33%;
+    max-width: 1140px;
+    min-width: 200px;
+    align-items: center;
+    gap: 1vw;
+    padding: 2.75em;
+}
+
+.form-info {
+    color: #333;
+}
+
+.form-info + div+ span {
+    font-size: 13px;
+    color: #777;
+    font-weight: bolder;
+}
+
+form input {
+    padding: .4em;
+    border: 1px solid #d9d9d9;
+    border-top: 1px solid #c0c0c0;
+}
+
+form label {
+    font-size: 13px;
+    color: #222;
+}
+
+form label span {
+    font-family: monospace;
+}
+
+.example {
+    font-size: 11px;
+    color: #666;
+}
+
+#or-search {
+    display: flex;
+    align-items: center;
+    column-gap: 1em;
+}
+
+#or-search input {
+    flex-grow: 1;
+}
+
+#or-search span {
+    font-size: 14px;
+}
+
+form select {
+    background: #f5f5f5;
+    border: 1px solid #dcdcdc;
+    padding: .6em .4em;
+    font-size: 11px;
+    font-weight: bold;
+    color: #444;
+}
+
+.line {
+    height: 0;
+    width: 100%;
+    border-top: 1px solid #ebebeb;
+    grid-column: span 3;
+    margin: 1em 0;
+}
+
+footer {
+    background: #f2f2f2;
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
+}
+
+footer a {
+    color: #70757a;
+    font-size: 14px;
+}
+
+footer a:not(:last-child) {
+    margin-right: 2em;
+}
+
+.country, .footer-links {
+    padding: 1em 2em;
+}
+
+.country {
+    border-bottom: 1px solid #dcdcdc;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: space-between;
+>>>>>>> 55b03087149b060a03fb91d3d02364719933cb76
 }

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -9,3 +10,16 @@
 		l127.7-127.7c7.6-7.6,7.6-19.9,0-27.5l0,0l-1.6-1.6c-7.6-7.6-19.9-7.6-27.5,0l0,0L239.4,294.7L179.7,234.9z"/>
 </g>
 </svg>
+=======
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+<g>
+	<path d="M256,0L36.6,73.1v219.4C36.6,413.8,134.8,512,256,512c121.2,0,219.4-98.2,219.4-219.4V73.1L256,0z M434.3,292.6
+		c0,98.5-79.8,178.3-178.3,178.3S77.7,391,77.7,292.6V104L256,41.1L434.3,104V292.6z"/>
+	<path d="M179.7,234.9c-8-8-21-8.1-29-0.1l-0.1,0.1c-8,8-8.1,21-0.1,29l0.1,0.1l73.9,73.9l1.2,1.2c7.6,7.6,19.9,7.6,27.5,0l0,0
+		l127.7-127.7c7.6-7.6,7.6-19.9,0-27.5l0,0l-1.6-1.6c-7.6-7.6-19.9-7.6-27.5,0l0,0L239.4,294.7L179.7,234.9z"/>
+</g>
+</svg>
+>>>>>>> 55b03087149b060a03fb91d3d02364719933cb76

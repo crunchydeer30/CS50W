@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -163,4 +164,171 @@
             </section>
         </footer>       
     </body>
+=======
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Advanced Search</title>
+
+        <link rel="stylesheet" href="css/styles-advanced.css">
+        <meta charset="urf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <header>
+            <a href="index.html" id="logo">
+                <img src="images/logo.png">
+            </a>
+            <div>
+                <a href="https://about.google/products/" id="apps-icon">
+                    <img src="images/apps.png">
+                </a> 
+                <a href="https://accounts.google.com/" id="account-icon">
+                    <img src="https://lh3.googleusercontent.com/ogw/AAEL6sgmHCyxAjlKf2MezNtb0XyekXIqZ5kycHxKR2C2=s32-c-mo">
+                </a>  
+            </div>             
+        </header>
+        
+        <main>
+            <h1>Advanced Search</h1>   
+            <form action="https://www.google.com/search" id="myform" autocomplete="off">
+
+                <span class="form-info">Find pages with...</span>
+                <div></div>
+                <span>To do this in the search box.</span>
+
+                <!--ALL THESE WORDS-->
+                <label for="as_q">all these words:</label>
+                <input type="text" name="as_q" id="as_q">
+                <label for="as_q" class="example">Type the important words: <span>tri-colour rat terrier</span></label>
+
+                
+                <!--THIS EXACT WORD OR PHRASE-->
+                <label for="as_q">this exact word or phrase:</label>
+                <input type="text" name="as_epq" id="as_epq">
+                <label for="as_q" class="example">Put exact words in quotes: <span>"rat terrier"</span></label>
+        
+                
+                <!--ANY OF THESE WORDS-->
+                <label for="as_q">any of these words:</label>
+                <input type="text" name="as_oq"  id="as_iq">
+                <label for="as_q" class="example">Type OR between all the words you want: <span>miniature OR standard</span></label>
+
+                
+                <!--NONE OF THIS WORDS-->
+                <label for="as_q">none of these words:</label>
+                <input type="text" name="as_oq"  id="as_iq">
+                <label for="as_q" class="example">Put a minus sign just before words that you don't want: <span>-rodent, -"Jack Russell"</span></label>
+            
+                
+                <!--NUMBER RANGING FROM-->
+                <label for="as_q">numbers ranging from:</label>
+                <div id="or-search">
+                    <input type="text" name="as_oq"  id="as_iq">
+                    <span>to</span>
+                    <input type="text" name="as_oq"  id="as_iq">
+                </div>
+                <label for="as_q" class="example">Put two full stops between the numbers and add a unit of measurement: <span>10..35 kg, £300..£500, 2010..2011</span></label>
+                
+                <div class="line"></div>
+                <span class="form-info">Then narrow your results by...</span>
+                <div></div>
+                <div></div>
+
+                
+                <!--LANGUAGE-->               
+                <label for="lr">language:</label>
+                <select name="lr" id="lr">
+                    <option value="">any language</option>
+                    <option value="lang_ru">Russian</option>
+                </select>
+                <label for="lr" class="example">Find pages in the language that you select.</label>
+
+                
+                <!--REGION-->
+                <label for="cr">region:</label>
+                <select name="cr" id="cr">
+                    <option value="">any region</option>
+                    <option value="countryRU">Russia</option>
+                </select>
+                <label for="cr" class="example">Find pages published in a particular region.</label>
+
+
+                <!--LAST UPDATE-->
+                <label for="as_qdr">last-update:</label>
+                <select name="as_qdr" id="as_qdr">
+                    <option value="">anytime</option>
+                    <option value="d">past 24 hours</option>
+                </select>
+                <label for="as_qdr" class="example">Find pages updated within the time that you specify.</label>
+                
+
+                <!--SITE OR DOMAIN-->
+                <label for="as_sitesearch">site or domain:</label>
+                <input type="text" name="as_sitesearch"  id="as_sitesearch">
+                <label for="as_sitesearch" class="example">Search one site (like <span>wikipedia.org</span>) or limit your results to a domain like <span>.edu, .org or .gov</span></label>
+
+                
+                <!--TERMS APPEARING-->
+                <label for="as_occt">terms appearing:</label>
+                <select name="as_occt" id="as_occt">
+                    <option value="">anywhere on the page</option>
+                    <option value="title">past 24 hours</option>
+                </select>
+                <label for="as_occt" class="example">Search for terms in the whole page, page title or web address, or links to the page you're looking for.</label>
+
+
+                <!--SAFE SEARCH-->
+                <label for="safe"><a href="https://support.google.com/websearch/answer/510?hl=en&visit_id=638113799973638319-3024714331&p=adv_safesearch&rd=1">SafeSearch:</a></label>
+                <select name="safe" id="safe">
+                    <option value="images">Show explicit results</option>
+                    <option value="active">Hide explicit results</option>
+                </select>
+                <label for="safe" class="example">Tell <a href="https://support.google.com/websearch/answer/510?hl=en&visit_id=638113799974924599-2770740435&p=adv_safesearch&rd=1">SafeSearch</a> whether to filter sexually explicit content.</label>
+
+
+                <!--FILE TYPE-->
+                <label for="as_filetype">terms appearing:</label>
+                <select name="as_filetype" id="as_filetype">
+                    <option value="">any format</option>
+                    <option value="pdf">Adobe Acrobat PDF (.pdf)</option>
+                </select>
+                <label for="as_filetype" class="example">Find pages in the format that you prefer.</label>
+
+
+                <!--USAGE RIGHTS-->
+                <label for="tbs"><a href="https://support.google.com/websearch/answer/29508?hl=en&visit_id=638113799974924599-2770740435&p=ws_images_usagerights&rd=1">usage rights:</a></label>
+                <select name="tbs" id="tbs">
+                    <option value="">not filtered by license</option>
+                    <option value="sur:f">free to use or share</option>
+                </select>
+                <label for="tbs" class="example">Find pages that you are free to use yourself.</label>
+
+                <input type="submit">
+        </form>
+                
+        </main>
+        
+        <footer>
+            <section class="country">
+                <a href="#">
+                    Your Country
+                </a>
+            </section>
+            <section class="footer-links">
+                <div>
+                    <a href="">About</a>
+                    <a href="">Advertising</a>
+                    <a href="">Business</a>
+                    <a href="">How Search Works</a>
+                </div>
+                <div>
+                    <a href="">Privacy</a>
+                    <a href="">Terms</a>
+                    <a href="">Settings</a>
+                </div>               
+            </section>
+        </footer>       
+    </body>
+>>>>>>> 55b03087149b060a03fb91d3d02364719933cb76
 </html>

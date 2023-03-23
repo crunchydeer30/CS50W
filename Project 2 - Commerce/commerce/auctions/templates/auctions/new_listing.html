@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {% extends 'auctions/layout.html' %}
 
 {% block title %} New Listing {% endblock %}
@@ -10,4 +11,18 @@
         {{ cat }}
         <input type="submit" value="Submit"> 
     </form>
+=======
+{% extends 'auctions/layout.html' %}
+
+{% block title %} New Listing {% endblock %}
+
+{% block body %}
+    <form action="{% url 'new_listing' %}" method="POST">
+        {% csrf_token %}
+        {{ listing_form }}
+        {{ seller }}
+        {{ cat }}
+        <input type="submit" value="Submit"> 
+    </form>
+>>>>>>> 55b03087149b060a03fb91d3d02364719933cb76
 {% endblock %}

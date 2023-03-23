@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {% extends 'auctions/layout.html' %}
 {% load static %}
 
@@ -94,4 +95,102 @@
     <!--
     
 {% endblock %}
+=======
+{% extends 'auctions/layout.html' %}
+{% load static %}
+
+
+
+{% block title %} {{ listing.title }} {% endblock %}
+
+
+
+{% block body %}
+    {% if winner == user %}
+        <h1>You Won!</h1>
+    {% endif %}
+    
+    <nav class="listing-page-nav"><a href='#'>{{ listing.category }}</a> / <a href="">{{ listing.title }}</a></nav>
+    <section class="listing-page-container {% if not listing.active %}listing-page-inactive{% endif %}">
+        <section class="listing-page-image-container {% if not listing.active %}listing-page-image-inactive{% endif %}"">
+            <img src="{{ listing.image }}">
+        </section>
+        <section class="listing-info">
+            <h1>{{ listing.title }}</h1>
+            <p class="listing-page-description">{{ listing.description }}</p>
+            <div class="listing-page-price">         
+                {% if current_bid %}
+                    <p class="listing-page-current-bid">Current bid: &dollar;{{ current_bid.price }}</p>
+                    <p class="listing-page-original-price">Original price: &dollar;{{ listing.starter_price }}</p>
+                {% else %}
+                    <p class="listing-page-current-bid">Price: &dollar;{{ listing.starter_price }}</p>
+                    <p class="listing-page-original-price">No bids yet</p>
+                {% endif %}
+            </div>
+            <div class="listing-page-seller-date">
+                <p class="listing-page-seller">Seller: {{ listing.seller }}</p>
+                <p class="listing-page-date">{{ listing.date_listed }}</p>
+            </div>           
+            <div class="listing-page-buttons">
+                {% if user.is_authenticated and user == listing.seller and listing.active %}
+                    <form action="{% url 'close_listing' listing_id=listing.id %}" method="POST">
+                        {% csrf_token %}
+                        <input type="submit" value="Cancel Listing" class="listing-page-btn listing-btn-red">
+                    </form>
+                    <form action="{% url 'close_listing' listing_id=listing.id %}" method="POST">
+                        {% csrf_token %}
+                        <div class="close-auction">
+                            <input type="submit" value="Close Auction" class="listing-page-btn listing-btn-black">
+                        </div>                        
+                    </form>
+                {% elif user.is_authenticated and listing.active %}
+                    <form action="{% url 'place_bid' listing_id=listing.id %}" method='POST' class="bid-form">
+                    {% csrf_token %}
+                    {{ bid_form }}
+                        <input type="submit" value="Place Bid" class="listing-page-btn listing-btn-black">
+                    </form>
+                    {% if not in_watchlist %}
+                    <form action="{% url 'watchlist_add' listing_id=listing.id %}" method="POST" class="watchlist-add">
+                        {% csrf_token %}
+                        <input type="submit" value="Watchlist" class="listing-page-btn listing-btn-white">                        
+                    </form>
+                    {% else %}
+                    <form action="{% url 'watchlist_remove' listing_id=listing.id %}" method="POST" class="watchlist-add">
+                        {% csrf_token %}
+                        <input type="submit" value="Unfollow" class="listing-page-btn listing-btn-white">                        
+                    </form>
+                    {% endif %}
+                {% endif %}
+            </div>
+        </section>
+        
+    </section>
+    <section class="comment-section {% if not listing.active %}listing-page-inactive{% endif %}">
+        <h2>Comments</h2>
+        {% if user.is_authenticated and listing.active %}
+        <form action="{% url 'leave_comment' listing_id=listing.id %}" method="POST" class="comment_form">
+            {% csrf_token %}
+            {{ comment_form }}
+            <input type="submit" value="Submit" class="listing-page-btn listing-btn-black">
+        </form>
+        {% endif %}
+        <section class="user-comments">
+            {% for comment in comments %}
+                <article class="comment">
+                    <div class="comment-header">
+                        <img src="{% static 'auctions/images/user-comment.svg' %}">
+                        <p class="comment-author">{{ comment.author }}</p>
+                        <date class="comment-date">{{ comment.date_posted|date:"d.m.Y" }}</date>
+                    </div>                    
+                    <p class="comment-text">{{ comment.comment }}</p>
+                    
+                </article>                
+            {% endfor %}  
+        </section>
+        
+    </section>
+    <!--
+    
+{% endblock %}
+>>>>>>> 55b03087149b060a03fb91d3d02364719933cb76
 -->
