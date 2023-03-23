@@ -1,0 +1,59 @@
+{% extends "auctions/layout.html" %}
+{% load static %}
+
+{% block body %}
+    
+    <section class="index-banners">
+        
+        <article class="index-banner-1">
+            <div>
+                <h2>Your purchases are protected</h2>
+                <p>Discover more about <span>Umbrella</span> money back guarantee</p>
+                <a href="#">Learn More</a>
+            </div>            
+            <img src="{% static 'auctions/images/safety-umbrella.svg' %}">
+        
+        </article>
+            
+        <article class="index-banner-2">
+            <div>
+                <h2>Special offers for top sellers</h2>
+                <a href="#">Learn More</a>
+            </div>
+            <img src="{% static 'auctions/images/cashback.svg' %}">
+        </article>
+
+        <article class="index-banner-3">
+            <div>
+                <h2>Worldwide shipping on special terms</h2>
+                <a href="#">Learn More</a>
+            </div>
+            <img src="{% static 'auctions/images/shipping.svg' %}">
+        </article>
+
+    </section>
+    <h2 class="active-listings">Active Listings</h2>
+    <section class="index-listings">
+        {% for listing in listings %}
+        <article>
+            <div class="index-listing-content">         
+                <a href="{% url 'view_listing' listing_id=listing.id %}" class="index-image-container">
+                    {% if listing.image %}
+                        <img src="{{ listing.image }}">
+                    {% else %}
+                        <img src="{% static 'auctions/images/placeholder.png' %}">
+                    {% endif %}
+                </a>
+                <h3 class="index-listing-title">{{ listing.title }}</h3>           
+                <p class="index-listing-category">{{ listing.category }}</p>
+                <p class="index-listing-description">{{ listing.description|slice:":75" }}...</p>
+            </div>  
+            <div class="index-listing-footer">
+                <h4 class="index-listing-price">${{ listing.current_price }}</h4>
+                <a href="{% url 'view_listing' listing_id=listing.id %}" class="index-listing-view">Read More</a>
+            </div>
+        </article>
+    {% endfor %}
+    </section>
+
+{% endblock %}

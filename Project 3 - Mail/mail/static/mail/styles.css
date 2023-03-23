@@ -1,0 +1,68 @@
+*,
+*::before,
+*::after {
+    padding: 0;
+    margin: 0;
+    box-sizing: inherit;
+}
+
+textarea {
+    min-height: 400px;
+}
+
+.mailbox h3+article {
+    border-top: 1px solid #ddd;
+}
+
+.email {
+    display: flex;
+    font-size: 1rem;
+    cursor: pointer;
+    border-bottom: 1px solid #ddd;
+    padding: .75rem .5rem;
+    transition: all .3s;
+}
+
+
+.email:hover {
+    background-color: #eee;
+}
+
+.email__sender, .email__subject, .email__timestamp {
+    font-size: inherit;
+    margin: 0;
+    padding: 0;
+    line-height: 1;
+}
+
+.email__subject {
+    margin-left: 1rem;
+}
+
+.email__timestamp {
+    margin-left: auto;
+}
+
+.email-open__info {
+    display: flex;
+    justify-content: space-between;
+}
+
+.email--read {
+    background-color: #eee;
+    color:#000;
+}
+
+.email--read:hover {
+    background-color: #ddd;
+}
+
+.email-open__body {
+    white-space: pre-line;
+    padding: 2rem 0;
+    border-top: 1px solid #333;
+}
+
+.email-open button:not(:last-child) {
+    margin-right: 1rem;
+}
